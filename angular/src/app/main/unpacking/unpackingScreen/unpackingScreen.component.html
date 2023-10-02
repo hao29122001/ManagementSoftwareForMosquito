@@ -1,0 +1,60 @@
+<div class="container-unpacking">
+  <div class="unpacking-header">
+    <div class="upk-plan">
+      <div class="plan total-actual">{{moduleFinish}} / {{moduleActual}}</div>
+    </div>
+    <div class="upk-current">
+      <div class="current module-current">
+        <div class="module-current-value">{{moduleNoCurrent}}</div>
+      </div>
+      <div class="current module-finish">
+        <div class="button-finish" (click)=" finishUpkModule(moduleNoCurrent)">FINISH</div>
+      </div>
+    </div>
+  </div>
+  <div class="unpacking-detail">
+    <div class="card">
+      <p-table [value]="rowdata" [tableStyle]="{ 'min-width': '100%' }" [paginator]="false" [rows]="5"
+        [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of
+          {totalRecords} entries" [rowsPerPageOptions]="[10, 25, 50]">
+        <ng-template pTemplate="header" class="header-p-table">
+          <tr>
+            <th>Part No</th>
+            <th>Part Name</th>
+            <th>Renban</th>
+            <th>Suppiler</th>
+            <th>Status</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowdata class="body-p-table">
+          <tr [ngClass]="getStatusBackgroundClass(rowdata.status)">
+            <td>{{ rowdata.partNo }}</td>
+            <td>{{ rowdata.partName }}</td>
+            <td>{{ rowdata.renban }}</td>
+            <td>{{ rowdata.supplier }}</td>
+            <td>{{ rowdata.status }}</td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+          <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+          <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+  <div class="unpacking-footer">
+    <div class="backno backno-current">
+      <div class="backno-name">Part No</div>
+      <div class="backno-value">{{partNoCurrent}}</div>
+    </div>
+    <div class="backno backno-status">
+      <div class="backno-status-value" [ngClass]="checkStatusModule(moduleNoStatus.moduleStatus)">{{moduleNoStatus}}
+      </div>
+    </div>
+    <div class="backno backno-current">
+      <div class="abc">L1-ABC123</div>
+    </div>
+  </div>
+</div>
